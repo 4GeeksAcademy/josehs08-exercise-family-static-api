@@ -30,23 +30,27 @@ class FamilyStructure:
         return randint(0, 99999999)
 
     def add_member(self, member):
+        required_keys = ["first_name", "last_name", "age", "lucky_numbers"]
+        print("required_keys: ", required_keys)
+        if not all(key in member for key in required_keys):
+            return {"error": "Invalid body."}
         if 'id' not in member:
             member['id'] = self._generateId()
         self._members.append(member)
+        return {"done":True}
 
     def delete_member(self, id):
         for member in self._members:
             if (member["id"] == id ):
                 self._members.remove(member)
                 return {"done":True}
-        return {"error":"Miembro no encontrado"}
+        return {"error":"Invalid id."}
 
     def get_member(self, id):
         for member in self._members:
             if member['id'] == id:
                 return member
-        return {"error": "Miembro no encontrado"}, 404
+        return {"error": "Invalid id."}
     
-
     def get_all_members(self):
         return self._members

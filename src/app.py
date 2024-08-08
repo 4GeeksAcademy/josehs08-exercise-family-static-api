@@ -23,7 +23,7 @@ def sitemap():
 def handle_hello():
     try:
         members = jackson_family.get_all_members()
-        return jsonify({"members": members}), 200
+        return jsonify(members), 200
     except:
         return jsonify({"error": "Internal Server Error"}), 500
 
@@ -47,7 +47,7 @@ def delete_member(id):
         response = jackson_family.delete_member(id)
         if "error" in response:
             return jsonify({"error": response["error"]}), 400
-        return jsonify({"message": "Member deleted successfully"}), 200
+        return jsonify(response), 200
     except:
         return jsonify({"error": "Internal Server Error"}), 500
 
@@ -58,7 +58,7 @@ def get_member(id):
         member = jackson_family.get_member(id)
         if "error" in member:
             return jsonify({"error": member["error"]}), 400
-        return jsonify({"member": member}), 200
+        return jsonify(member), 200
     except:
         return jsonify({"error": "Internal Server Error"}), 500
 

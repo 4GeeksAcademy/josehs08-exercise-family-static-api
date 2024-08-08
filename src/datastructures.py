@@ -30,7 +30,7 @@ class FamilyStructure:
         return randint(0, 99999999)
 
     def add_member(self, member):
-        required_keys = ["first_name", "last_name", "age", "lucky_numbers"]
+        required_keys = ["first_name", "age", "lucky_numbers"]
         print("required_keys: ", required_keys)
         if not all(key in member for key in required_keys):
             return {"error": "Invalid body."}
